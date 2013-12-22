@@ -1,4 +1,4 @@
 HtmlExamples
 ============
 
-Different Small html and jquery exapmples
+Different Small html and jquery applications.
