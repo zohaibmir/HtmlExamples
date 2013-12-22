@@ -121,13 +121,15 @@ Food
                     id = "data"+cloneCntr; 
                     grptxt = "yGroup"+cloneCntr+"_id";
                     if (this.id) {
-                       // this.id = this.id.substring(0, this.id.length - 1) + cloneCntr;                       
+                       
                         if(this.id == "yData1_id") {
                             this.id = "yData"+cloneCntr+"_id"
-                        }
-                        
-                        if(this.id == "yGroup1_id") {
+                        }                        
+                        else if(this.id == "yGroup1_id") {
                             this.id = "yGroup"+cloneCntr+"_id"
+                        }
+                        else {
+                             this.id = this.id.substring(0, this.id.length - 1) + cloneCntr;                       
                         }
                         this.value = "";    
                         if(this.id == id) {
