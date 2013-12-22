@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+        <title>Test</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
+        <style>
+            .data-section {
+                float: left;
+                margin-right: 10px;
+            }
+            .minus-imag {
+                display: none;
+            }
+            td {
+                vertical-align: top;
+            }
+            .textbox {
+                width: 94%;
+                position: relative;
+                left: 1%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form name="testForm" action="" id="testForm_id">
+            <table class="datatext" cellpadding="5">
+                <tr id="section">
+                    <td><div>Labels</div>
+                        <textarea name="xData1" id="xData1_id" rows="5" cols="20">
+Car
+House
+School
+Food
+                        </textarea></td>
+
+                    <td id="main-section">
+
+
+                        <div class="data-section" id="data-section_id1">
+                            <a href="#" id="data1">Data1</a> &#160;&#160; <img src="plus.png" class="plus-imag" id="plus1" />&nbsp;&nbsp;<img src="minus.png" class="minus-imag" id="minus1"/><br />
+                            <textarea name="yData1" id="yData_id1" rows="5" cols="20">
+600
+200
+300
+400
+                            </textarea>
+                            <br />
+                            <input type="text" id="yGroup_id1" name="yGroup1" class="textbox" value="Group 1"/>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <script type="text/javascript">
+            cloneCntr = 2;
+            
+            $(".plus-imag").click(function(){                 
+                if(cloneCntr < 6) {
+                    makeClone();
+                    var id = $(this).attr('id');                                
+                    $("#"+id).hide();
+                    currentclonebtn = cloneCntr - 1;
+                    lastclonebtn = cloneCntr - 2;
+                    minbtn = "#minus"+lastclonebtn;
+                    $(minbtn).hide();
+                    plusbtn = "#plus"+currentclonebtn
+                    minbtn = "#minus"+currentclonebtn;
+                    if(cloneCntr < 6) {
+                        $(plusbtn).show();
+                        $(minbtn).show();
+                    } else {
+                        $(minbtn).show();
+                        $(plusbtn).hide();
+                    }
+                }
+                
+            })
+            $(".minus-imag").click(function(){   
+                str = this.id;
+                var number = str.charAt(str.length-1);
+                currentclonebtn = number - 1;
+                plusbtn = "#plus"+ currentclonebtn;
+                minbtn = "#minus"+currentclonebtn;                
+                $(plusbtn).show();
+                if(currentclonebtn > 1) {
+                    $(minbtn).show();
+                }
+                removeSection(number);
+            })
+            
+            
+            function makeClone() {
+                // clone the div
+                str = $(".data-section").attr('id');               
+                var pnumber = str.charAt(str.length-1);
+                //var cloneCntr = parseFloat(pnumber) + parseFloat(1);    
+                var clone = $("#data-section_id1").clone(true,true);
+                // change all id values to a new unique value by adding "_cloneX" to the end
+                // where X is a number that increases each time you make a clone
+    
+                $("*", clone).add(clone).each(function() {
+                    id = "data"+cloneCntr; 
+                    grptxt = "yGroup_id"+cloneCntr
+                    if (this.id) {
+                        this.id = this.id.substring(0, this.id.length - 1) + cloneCntr;
+                        this.value = "";    
+                        if(this.id == id) {
+                            $(this).html("Data" + cloneCntr);                 
+                        }
+                        if(this.id == grptxt) {
+                            $(this).val("Group" + cloneCntr)
+                        }
+                    }
+                    if (this.name) {
+                        this.name = this.name.substring(0, this.name.length - 1) + cloneCntr;
+                        //this.name = this.name + cloneCntr;
+                    }
+                });
+                
+                ++cloneCntr;                
+                $('#main-section').append(clone);                         
+
+            }
+            function removeSection(id) {    
+    
+                $('#main-section').find('#data-section_id'+id).remove(); 
+                --cloneCntr; 
+            } 
+        </script>
+    </body>
+</html>
