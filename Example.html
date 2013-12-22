@@ -25,7 +25,9 @@
                 padding: 2px;
             }
             .medium {
-                width: 140px;
+                width: 130px;
+                max-width: 130px;               
+                padding: 2px;
             }
         </style>
     </head>
@@ -47,14 +49,14 @@ Food
 
                         <div class="data-section" id="data-section_id1">
                             <a href="#" id="data1">Data1</a> &#160;&#160; <img src="plus.png" class="plus-imag" id="plus1" />&nbsp;&nbsp;<img src="minus.png" class="minus-imag" id="minus1"/><br />
-                            <textarea name="yData1" id="yData_id1" class="large" rows="5" cols="20">
+                            <textarea name="yData1" id="yData1_id" class="large" rows="5" cols="20">
 600
 200
 300
 400
                             </textarea>
                             <br />
-                            <input type="text" id="yGroup_id1" name="yGroup1" class="large" value="Group 1"/>
+                            <input type="text" id="yGroup1_id" name="yGroup1" class="large" value="Group 1"/>
                         </div>
                     </td>
                 </tr>
@@ -117,9 +119,16 @@ Food
     
                 $("*", clone).add(clone).each(function() {
                     id = "data"+cloneCntr; 
-                    grptxt = "yGroup_id"+cloneCntr
+                    grptxt = "yGroup"+cloneCntr+"_id";
                     if (this.id) {
-                        this.id = this.id.substring(0, this.id.length - 1) + cloneCntr;
+                       // this.id = this.id.substring(0, this.id.length - 1) + cloneCntr;                       
+                        if(this.id == "yData1_id") {
+                            this.id = "yData"+cloneCntr+"_id"
+                        }
+                        
+                        if(this.id == "yGroup1_id") {
+                            this.id = "yGroup"+cloneCntr+"_id"
+                        }
                         this.value = "";    
                         if(this.id == id) {
                             $(this).html("Data" + cloneCntr);                 
