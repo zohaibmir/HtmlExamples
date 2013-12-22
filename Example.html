@@ -11,7 +11,7 @@
         <style>
             .data-section {
                 float: left;
-                margin-right: 10px;
+                padding-right: 10px;
             }
             .minus-imag {
                 display: none;
@@ -19,10 +19,13 @@
             td {
                 vertical-align: top;
             }
-            .textbox {
-                width: 94%;
-                position: relative;
-                left: 1%;
+            .large {
+                width: 180px;
+                max-width: 180px;               
+                padding: 2px;
+            }
+            .medium {
+                width: 140px;
             }
         </style>
     </head>
@@ -32,7 +35,7 @@
             <table class="datatext" cellpadding="5">
                 <tr id="section">
                     <td><div>Labels</div>
-                        <textarea name="xData1" id="xData1_id" rows="5" cols="20">
+                        <textarea name="xData1" id="xData1_id" rows="5" class="large" cols="20">
 Car
 House
 School
@@ -44,14 +47,14 @@ Food
 
                         <div class="data-section" id="data-section_id1">
                             <a href="#" id="data1">Data1</a> &#160;&#160; <img src="plus.png" class="plus-imag" id="plus1" />&nbsp;&nbsp;<img src="minus.png" class="minus-imag" id="minus1"/><br />
-                            <textarea name="yData1" id="yData_id1" rows="5" cols="20">
+                            <textarea name="yData1" id="yData_id1" class="large" rows="5" cols="20">
 600
 200
 300
 400
                             </textarea>
                             <br />
-                            <input type="text" id="yGroup_id1" name="yGroup1" class="textbox" value="Group 1"/>
+                            <input type="text" id="yGroup_id1" name="yGroup1" class="large" value="Group 1"/>
                         </div>
                     </td>
                 </tr>
@@ -79,6 +82,9 @@ Food
                         $(minbtn).show();
                         $(plusbtn).hide();
                     }
+                    if(cloneCntr == 3) {
+                        $(".large").removeClass("large").addClass("medium");
+                    }
                 }
                 
             })
@@ -91,6 +97,10 @@ Food
                 $(plusbtn).show();
                 if(currentclonebtn > 1) {
                     $(minbtn).show();
+                }
+                
+                if(cloneCntr == 3) {
+                    $(".medium").removeClass("medium").addClass("large");
                 }
                 removeSection(number);
             })
